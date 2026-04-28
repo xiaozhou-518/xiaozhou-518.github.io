@@ -551,9 +551,168 @@
             overflow-x: hidden;
             width: 100%;
         }
+
+        /* 登录页面样式 */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .login-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: loginSlideIn 0.6s ease-out;
+        }
+
+        @keyframes loginSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .login-title {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .login-subtitle {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .login-input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .login-label {
+            display: block;
+            color: #555;
+            font-size: 0.95em;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .login-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            color: #f44336;
+            font-size: 0.9em;
+            margin-top: 15px;
+            display: none;
+            padding: 10px;
+            background: rgba(244, 67, 54, 0.1);
+            border-radius: 8px;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
     </style>
 </head>
 <body>
+    <!-- 登录遮罩层 -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-box">
+            <span class="login-icon">🔐</span>
+            <h2 class="login-title">欢迎回来</h2>
+            <p class="login-subtitle">请输入账号密码以继续</p>
+            
+            <div class="login-input-group">
+                <label class="login-label" for="username">账号</label>
+                <input type="text" id="username" class="login-input" placeholder="请输入账号" autocomplete="off">
+            </div>
+            
+            <div class="login-input-group">
+                <label class="login-label" for="password">密码</label>
+                <input type="password" id="password" class="login-input" placeholder="请输入密码">
+            </div>
+            
+            <button class="login-button" onclick="checkLogin()">登 录</button>
+            
+            <div class="error-message" id="errorMessage">
+                ❌ 账号或密码错误，请重试
+            </div>
+        </div>
+    </div>
+
     <!-- 装饰元素 -->
     <div class="sun-rays"></div>
     <div class="cloud"></div>
@@ -683,6 +842,49 @@
     </div>
 
     <script>
+        // 登录验证功能
+        function checkLogin() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorMessage = document.getElementById('errorMessage');
+            const loginOverlay = document.getElementById('loginOverlay');
+
+            if (username === 'ajoker' && password === '54438') {
+                // 登录成功
+                loginOverlay.classList.add('hidden');
+                sessionStorage.setItem('isLoggedIn', 'true');
+                
+                // 清除错误信息
+                errorMessage.classList.remove('show');
+                
+                // 清空输入框
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            } else {
+                // 登录失败
+                errorMessage.classList.add('show');
+                
+                // 震动效果后重置
+                setTimeout(() => {
+                    errorMessage.classList.remove('show');
+                }, 2000);
+            }
+        }
+
+        // 检查是否已登录
+        window.addEventListener('load', function() {
+            if (sessionStorage.getItem('isLoggedIn') === 'true') {
+                document.getElementById('loginOverlay').classList.add('hidden');
+            }
+        });
+
+        // 回车键登录
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !document.getElementById('loginOverlay').classList.contains('hidden')) {
+                checkLogin();
+            }
+        });
+
         // 滚动动画效果
         const cards = document.querySelectorAll('.card');
         
