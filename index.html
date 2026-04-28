@@ -403,20 +403,153 @@
         /* 响应式设计 */
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 2.2em;
+                font-size: 2em;
+                letter-spacing: 3px;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .main-container {
+                padding: 20px 15px;
             }
 
             .card {
-                padding: 30px 25px;
+                padding: 25px 20px;
+                margin-bottom: 20px;
+                border-radius: 15px;
+            }
+
+            .card-icon {
+                font-size: 2.5em;
             }
 
             .card-title {
-                font-size: 1.5em;
+                font-size: 1.4em;
+                margin-bottom: 15px;
+            }
+
+            .card-content {
+                font-size: 0.95em;
+                line-height: 1.8;
             }
 
             .quote-text {
+                font-size: 1em;
+                padding: 15px;
+            }
+
+            .joke-content {
+                font-size: 1em;
+                padding-left: 20px;
+            }
+
+            .email-text {
                 font-size: 1.1em;
             }
+
+            .consult-text {
+                font-size: 1.2em;
+            }
+
+            .xiaozhou {
+                font-size: 1.5em;
+            }
+
+            .footer-message h2 {
+                font-size: 1.6em;
+            }
+
+            .footer-message p {
+                font-size: 1em;
+            }
+
+            .contact-info {
+                padding: 20px 15px;
+            }
+        }
+
+        /* 小屏幕手机优化 */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.7em;
+                letter-spacing: 2px;
+            }
+
+            .header {
+                margin-bottom: 30px;
+                padding: 30px 15px;
+            }
+
+            .card {
+                padding: 20px 15px;
+                margin-bottom: 15px;
+            }
+
+            .card-title {
+                font-size: 1.3em;
+            }
+
+            .card-content {
+                font-size: 0.9em;
+            }
+
+            .quote-text {
+                font-size: 0.95em;
+                padding: 12px;
+            }
+
+            .joke-box {
+                padding: 18px;
+            }
+
+            .joke-content {
+                font-size: 0.95em;
+                padding-left: 15px;
+            }
+
+            .email-text {
+                font-size: 1em;
+            }
+
+            .consult-text {
+                font-size: 1.1em;
+            }
+
+            .xiaozhou {
+                font-size: 1.4em;
+            }
+
+            .contact-info {
+                padding: 18px 12px;
+            }
+
+            .footer-message {
+                padding: 30px 15px;
+            }
+
+            .footer-message h2 {
+                font-size: 1.4em;
+            }
+
+            .footer-message p {
+                font-size: 0.95em;
+            }
+        }
+
+        /* vivo手机特殊优化 - 确保兼容性 */
+        @supports (-webkit-touch-callout: none) {
+            .card {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+            }
+        }
+
+        /* 防止iOS Safari的弹性滚动 */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
         }
     </style>
 </head>
@@ -576,6 +709,18 @@
 
         // 添加平滑滚动效果
         document.documentElement.style.scrollBehavior = 'smooth';
+
+        // 移动端触摸优化
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].clientY;
+        }, { passive: true });
 
         // 随机显示鼓励语句（可选功能）
         const encouragements = [
