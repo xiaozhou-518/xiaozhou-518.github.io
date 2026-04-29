@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>心灵驿站 - 温暖你的每一天</title>
+    <title>给最爱的婷婷 - 永远爱你</title>
     <style>
         * {
             margin: 0;
@@ -13,927 +13,371 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #e0f7fa 0%, #fff9c4 50%, #f8bbd0 100%);
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 50%, #fafafa 100%);
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* 阳光装饰 */
-        .sun-rays {
-            position: fixed;
-            top: -100px;
-            right: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 235, 59, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse 4s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.2); opacity: 0.8; }
-        }
-
-        /* 漂浮的云朵 */
-        .cloud {
-            position: fixed;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 100px;
-            opacity: 0.8;
-            animation: float-cloud 20s linear infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .cloud::before,
-        .cloud::after {
+        /* 简约装饰元素 */
+        body::before {
             content: '';
-            position: absolute;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 100px;
-        }
-
-        .cloud:nth-child(1) {
-            width: 100px;
-            height: 40px;
-            top: 10%;
-            left: -100px;
-            animation-duration: 25s;
-        }
-
-        .cloud:nth-child(1)::before {
-            width: 50px;
-            height: 50px;
-            top: -25px;
-            left: 10px;
-        }
-
-        .cloud:nth-child(1)::after {
-            width: 60px;
-            height: 40px;
-            top: -15px;
-            right: 10px;
-        }
-
-        .cloud:nth-child(2) {
-            width: 80px;
-            height: 35px;
-            top: 30%;
-            left: -80px;
-            animation-duration: 30s;
-            animation-delay: 5s;
-        }
-
-        .cloud:nth-child(2)::before {
-            width: 40px;
-            height: 40px;
-            top: -20px;
-            left: 15px;
-        }
-
-        @keyframes float-cloud {
-            from { transform: translateX(0); }
-            to { transform: translateX(calc(100vw + 100px)); }
-        }
-
-        /* 主容器 */
-        .main-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* 标题区域 */
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding: 40px 20px;
-        }
-
-        .header h1 {
-            font-size: 3em;
-            color: #ff6b6b;
-            margin-bottom: 15px;
-            font-weight: 300;
-            letter-spacing: 5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .header p {
-            font-size: 1.2em;
-            color: #666;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        /* 卡片样式 */
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
-            animation: slideIn 0.6s ease-out;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .card-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-            display: block;
-            text-align: center;
-        }
-
-        .card-title {
-            font-size: 1.8em;
-            color: #333;
-            margin-bottom: 20px;
-            font-weight: 400;
-            text-align: center;
-            letter-spacing: 2px;
-        }
-
-        .card-content {
-            color: #555;
-            font-size: 1.05em;
-            line-height: 2;
-            text-align: justify;
-        }
-
-        .card-content p {
-            margin-bottom: 15px;
-        }
-
-        /* 小故事卡片 - 蓝色主题 */
-        .story-card {
-            border-left: 5px solid #4fc3f7;
-        }
-
-        .story-card .card-title {
-            color: #0288d1;
-        }
-
-        /* 心灵鸡汤卡片 - 粉色主题 */
-        .inspiration-card {
-            border-left: 5px solid #f48fb1;
-        }
-
-        .inspiration-card .card-title {
-            color: #e91e63;
-        }
-
-        /* 大师名言卡片 - 紫色主题 */
-        .quote-card {
-            border-left: 5px solid #ce93d8;
-        }
-
-        .quote-card .card-title {
-            color: #7b1fa2;
-        }
-
-        .quote-text {
-            font-size: 1.3em;
-            color: #6a1b9a;
-            font-style: italic;
-            text-align: center;
-            padding: 20px;
-            background: rgba(206, 147, 216, 0.1);
-            border-radius: 10px;
-            margin: 20px 0;
-            line-height: 1.8;
-        }
-
-        .quote-author {
-            text-align: right;
-            color: #9c27b0;
-            font-weight: 500;
-            margin-top: 15px;
-        }
-
-        /* 幽默一刻卡片 - 黄色主题 */
-        .humor-card {
-            border-left: 5px solid #ffd54f;
-        }
-
-        .humor-card .card-title {
-            color: #f57c00;
-        }
-
-        .joke-box {
-            background: linear-gradient(135deg, #fff9c4 0%, #ffecb3 100%);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-            position: relative;
-        }
-
-        .joke-box::before {
-            content: '"';
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            font-size: 3em;
-            color: rgba(245, 124, 0, 0.2);
-            font-family: Georgia, serif;
-        }
-
-        .joke-content {
-            font-size: 1.1em;
-            color: #5d4037;
-            line-height: 1.8;
-            padding-left: 30px;
-        }
-
-        /* 底部鼓励语 */
-        .footer-message {
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 30px;
-        }
-
-        .footer-message h2 {
-            font-size: 2em;
-            color: #ff6b6b;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .footer-message p {
-            font-size: 1.1em;
-            color: #666;
-            line-height: 2;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .heart-beat {
-            display: inline-block;
-            animation: heartbeat 1.5s ease-in-out infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        /* 联系方式卡片 */
-        .contact-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-left: none;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .contact-card .card-title {
-            color: #fff;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-info {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .email-text {
-            font-size: 1.3em;
-            color: #333;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .email-link {
-            color: #667eea;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            word-break: break-all;
-        }
-
-        .email-link:hover {
-            color: #764ba2;
-            text-decoration: underline;
-        }
-
-        .consult-text {
-            font-size: 1.4em;
-            color: #333;
-            font-weight: 500;
-            animation: bounce 1s ease-in-out infinite;
-        }
-
-        .xiaozhou {
-            font-size: 1.8em;
-            color: #ff6b6b;
-            font-weight: bold;
-            display: inline-block;
-            animation: bounce-highlight 0.8s ease-in-out infinite;
-            text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.3);
-            margin: 0 5px;
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
-
-        @keyframes bounce-highlight {
-            0%, 100% {
-                transform: translateY(0) scale(1);
-                text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.3);
-            }
-            50% {
-                transform: translateY(-12px) scale(1.1);
-                text-shadow: 3px 3px 8px rgba(255, 107, 107, 0.5);
-            }
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2em;
-                letter-spacing: 3px;
-            }
-
-            .header p {
-                font-size: 1em;
-            }
-
-            .main-container {
-                padding: 20px 15px;
-            }
-
-            .card {
-                padding: 25px 20px;
-                margin-bottom: 20px;
-                border-radius: 15px;
-            }
-
-            .card-icon {
-                font-size: 2.5em;
-            }
-
-            .card-title {
-                font-size: 1.4em;
-                margin-bottom: 15px;
-            }
-
-            .card-content {
-                font-size: 0.95em;
-                line-height: 1.8;
-            }
-
-            .quote-text {
-                font-size: 1em;
-                padding: 15px;
-            }
-
-            .joke-content {
-                font-size: 1em;
-                padding-left: 20px;
-            }
-
-            .email-text {
-                font-size: 1.1em;
-            }
-
-            .consult-text {
-                font-size: 1.2em;
-            }
-
-            .xiaozhou {
-                font-size: 1.5em;
-            }
-
-            .footer-message h2 {
-                font-size: 1.6em;
-            }
-
-            .footer-message p {
-                font-size: 1em;
-            }
-
-            .contact-info {
-                padding: 20px 15px;
-            }
-        }
-
-        /* 小屏幕手机优化 */
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 1.7em;
-                letter-spacing: 2px;
-            }
-
-            .header {
-                margin-bottom: 30px;
-                padding: 30px 15px;
-            }
-
-            .card {
-                padding: 20px 15px;
-                margin-bottom: 15px;
-            }
-
-            .card-title {
-                font-size: 1.3em;
-            }
-
-            .card-content {
-                font-size: 0.9em;
-            }
-
-            .quote-text {
-                font-size: 0.95em;
-                padding: 12px;
-            }
-
-            .joke-box {
-                padding: 18px;
-            }
-
-            .joke-content {
-                font-size: 0.95em;
-                padding-left: 15px;
-            }
-
-            .email-text {
-                font-size: 1em;
-            }
-
-            .consult-text {
-                font-size: 1.1em;
-            }
-
-            .xiaozhou {
-                font-size: 1.4em;
-            }
-
-            .contact-info {
-                padding: 18px 12px;
-            }
-
-            .footer-message {
-                padding: 30px 15px;
-            }
-
-            .footer-message h2 {
-                font-size: 1.4em;
-            }
-
-            .footer-message p {
-                font-size: 0.95em;
-            }
-        }
-
-        /* vivo手机特殊优化 - 确保兼容性 */
-        @supports (-webkit-touch-callout: none) {
-            .card {
-                -webkit-transform: translateZ(0);
-                transform: translateZ(0);
-            }
-        }
-
-        /* 防止iOS Safari的弹性滚动 */
-        html, body {
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        /* 登录页面样式 */
-        .login-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(255, 182, 193, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(255, 218, 185, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .login-overlay.hidden {
-            opacity: 0;
-            visibility: hidden;
+        /* 优雅的装饰点 */
+        .decorative-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 182, 193, 0.3);
+            animation: float-gentle 8s ease-in-out infinite;
+            z-index: 1;
             pointer-events: none;
         }
 
-        .login-box {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 50px 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 400px;
-            width: 90%;
+        .decorative-dot:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; }
+        .decorative-dot:nth-child(2) { top: 25%; right: 12%; animation-delay: 2s; }
+        .decorative-dot:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 4s; }
+        .decorative-dot:nth-child(4) { bottom: 30%; right: 8%; animation-delay: 1s; }
+        .decorative-dot:nth-child(5) { top: 60%; left: 5%; animation-delay: 3s; }
+        .decorative-dot:nth-child(6) { top: 45%; right: 6%; animation-delay: 5s; }
+
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-15px) scale(1.2); opacity: 0.5; }
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1000px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            padding: 60px 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06), 0 2px 10px rgba(0, 0, 0, 0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 182, 193, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .title {
             text-align: center;
-            animation: loginSlideIn 0.6s ease-out;
+            color: #2c3e50;
+            font-size: 2.8em;
+            margin-bottom: 12px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            position: relative;
         }
 
-        @keyframes loginSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .login-icon {
-            font-size: 4em;
-            margin-bottom: 20px;
+        .title::after {
+            content: '';
             display: block;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffb6c1, transparent);
+            margin: 20px auto 0;
         }
 
-        .login-title {
-            font-size: 2em;
-            color: #333;
-            margin-bottom: 10px;
+        .subtitle {
+            text-align: center;
+            color: #95a5a6;
+            font-size: 1.2em;
+            margin-bottom: 50px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.95) contrast(1.02);
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+            color: #fff;
+            padding: 50px 40px 35px;
+        }
+
+        .carousel-caption h3 {
+            font-size: 1.6em;
+            margin-bottom: 12px;
+            color: #fff;
             font-weight: 400;
+            letter-spacing: 1px;
         }
 
-        .login-subtitle {
+        .carousel-caption p {
             font-size: 1em;
-            color: #666;
-            margin-bottom: 30px;
+            line-height: 1.9;
+            opacity: 0.9;
+            font-weight: 300;
         }
 
-        .login-input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .login-label {
-            display: block;
-            color: #555;
-            font-size: 0.95em;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .login-input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1em;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-
-        .login-input:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .login-button {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1em;
-            font-weight: 500;
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 15px 12px;
+            font-size: 1.5em;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 10px;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .login-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        .carousel-control:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.08);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
-        .login-button:active {
-            transform: translateY(0);
+        .carousel-control.prev {
+            left: 0;
+            border-radius: 0 10px 10px 0;
         }
 
-        .error-message {
-            color: #f44336;
-            font-size: 0.9em;
+        .carousel-control.next {
+            right: 0;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .indicator.active {
+            background: #fff;
+            transform: scale(1.3);
+        }
+
+        .message-section {
+            margin-top: 50px;
+            padding: 45px 40px;
+            background: #fafafa;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .message-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .message-content {
+            color: #555;
+            font-size: 1.05em;
+            line-height: 2.4;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .highlight {
+            color: #e91e63;
+            font-weight: 400;
+            font-size: 1.1em;
             margin-top: 15px;
-            display: none;
-            padding: 10px;
-            background: rgba(244, 67, 54, 0.1);
-            border-radius: 8px;
         }
 
-        .error-message.show {
-            display: block;
-            animation: shake 0.5s ease-in-out;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2em;
+            }
+            
+            .carousel {
+                height: 400px;
+            }
+            
+            .carousel-item img {
+                height: 400px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 登录遮罩层 -->
-    <div class="login-overlay" id="loginOverlay">
-        <div class="login-box">
-            <span class="login-icon">🔐</span>
-            <h2 class="login-title">欢迎回来</h2>
-            <p class="login-subtitle">请输入账号密码以继续</p>
+    <!-- 简约装饰点 -->
+    <div class="decorative-dot"></div>
+    <div class="decorative-dot"></div>
+    <div class="decorative-dot"></div>
+    <div class="decorative-dot"></div>
+    <div class="decorative-dot"></div>
+    <div class="decorative-dot"></div>
+
+    <div class="container">
+        <h1 class="title">给最爱的婷婷</h1>
+        <p class="subtitle">你是我生命中最美的礼物</p>
+        
+        <div class="carousel">
+            <div class="carousel-inner" id="carouselInner">
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=800&h=500&fit=crop" alt="我们的爱情">
+                    <div class="carousel-caption">
+                        <h3>相遇是最美的缘分</h3>
+                        <p>亲爱的婷婷，遇见你是我这辈子最幸运的事。从相识到相爱，每一个瞬间都让我感受到生命的温暖与美好。你的笑容是我每天的动力，你的温柔是我心灵的港湾。</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&h=500&fit=crop" alt="新生命的到来">
+                    <div class="carousel-caption">
+                        <h3>我们的小天使即将到来</h3>
+                        <p>得知你怀了我们宝宝的那一刻，我的内心充满了激动和幸福。这是我们爱情的结晶，是我们共同的未来。虽然我不能时刻陪在你身边，但我的心永远与你和宝宝在一起。</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=500&fit=crop" alt="永恒的承诺">
+                    <div class="carousel-caption">
+                        <h3>永远的承诺与守护</h3>
+                        <p>婷婷，我知道现在不能一直陪在你身边让你感到孤单，但请相信，我的心从未离开过你。无论距离多远，我都会用我的方式守护着你和我们的宝宝。等我回来，我会加倍补偿这段时光。</p>
+                    </div>
+                </div>
+            </div>
             
-            <div class="login-input-group">
-                <label class="login-label" for="username">账号</label>
-                <input type="text" id="username" class="login-input" placeholder="请输入账号" autocomplete="off">
-            </div>
+            <button class="carousel-control prev" onclick="prevSlide()">❮</button>
+            <button class="carousel-control next" onclick="nextSlide()">❯</button>
             
-            <div class="login-input-group">
-                <label class="login-label" for="password">密码</label>
-                <input type="password" id="password" class="login-input" placeholder="请输入密码">
-            </div>
-            
-            <button class="login-button" onclick="checkLogin()">登 录</button>
-            
-            <div class="error-message" id="errorMessage">
-                ❌ 账号或密码错误，请重试
-            </div>
-        </div>
-    </div>
-
-    <!-- 装饰元素 -->
-    <div class="sun-rays"></div>
-    <div class="cloud"></div>
-    <div class="cloud"></div>
-
-    <div class="main-container">
-        <!-- 标题区域 -->
-        <div class="header">
-            <h1>🌈 心灵驿站</h1>
-            <p>每一缕阳光都能照亮黑暗，每一个微笑都能温暖人心</p>
-        </div>
-
-        <!-- 小故事卡片 -->
-        <div class="card story-card">
-            <span class="card-icon">📖</span>
-            <h2 class="card-title">温暖小故事</h2>
-            <div class="card-content">
-                <p><strong>破茧成蝶的力量</strong></p>
-                <p>有一个人发现了一个茧，他看到里面有一只蝴蝶在挣扎。出于好心，他用剪刀剪开了茧，帮助蝴蝶出来。但是这只蝴蝶再也飞不起来了。</p>
-                <p>原来，蝴蝶必须通过自己的努力从茧中挣脱出来，这个过程会让它的翅膀变得强壮。没有经过挣扎，它就无法飞翔。</p>
-                <p>人生也是如此。我们遇到的困难和挑战，正是让我们成长的契机。不要害怕痛苦，因为每一次挣扎都会让你变得更强大。</p>
-                <p style="text-align: center; color: #0288d1; font-weight: 500; margin-top: 20px;">💪 你比想象中更坚强</p>
+            <div class="carousel-indicators">
+                <span class="indicator active" onclick="goToSlide(0)"></span>
+                <span class="indicator" onclick="goToSlide(1)"></span>
+                <span class="indicator" onclick="goToSlide(2)"></span>
             </div>
         </div>
 
-        <!-- 心灵鸡汤卡片 -->
-        <div class="card inspiration-card">
-            <span class="card-icon">☀️</span>
-            <h2 class="card-title">心灵鸡汤</h2>
-            <div class="card-content">
-                <p>🌟 <strong>关于希望：</strong>即使是最黑暗的夜晚，也阻挡不了黎明的到来。请相信，所有的困难都是暂时的，阳光总会穿透云层。</p>
-                <p>🌸 <strong>关于自我：</strong>你不需要成为别人眼中的完美样子。做真实的自己，接纳自己的不完美，这才是真正的勇敢。</p>
-                <p>🌊 <strong>关于挫折：</strong>人生就像海浪，有高峰也有低谷。重要的是，无论处于什么位置，都要保持前进的勇气。</p>
-                <p>🦋 <strong>关于改变：</strong>改变可能让人害怕，但不变会让人停滞。每一次的改变都是一次重生的机会。</p>
-                <p>💖 <strong>关于爱：</strong>首先学会爱自己，才能更好地爱他人。你值得被爱，值得拥有美好的一切。</p>
-                <p style="text-align: center; color: #e91e63; font-weight: 500; margin-top: 20px; font-size: 1.1em;">✨ 今天的你，已经很棒了</p>
+        <div class="message-section">
+            <h2 class="message-title">想对你说的话</h2>
+            <div class="message-content">
+                <p>亲爱的婷婷，</p>
+                <p>这段时间不能陪在你身边，我心里充满了愧疚和思念。</p>
+                <p>知道你怀了我们的宝宝，我既兴奋又心疼。</p>
+                <p>兴奋的是我们即将迎来新生命，心疼的是在你最需要我的时候，我却不能时刻守护在你身旁。</p>
+                <p class="highlight">但请相信，无论距离多远，我的心永远和你在一起。</p>
+                <p>每一天我都在想着你和宝宝，想象着你们的样子，期待着团聚的那一天。</p>
+                <p>你要好好照顾自己，按时吃饭，注意休息，保持好心情。</p>
+                <p>有什么需要随时告诉我，我会尽我所能为你做一切。</p>
+                <p class="highlight">我爱你，婷婷。爱你和我们的宝宝，直到永远。</p>
             </div>
-        </div>
-
-        <!-- 大师名言卡片 -->
-        <div class="card quote-card">
-            <span class="card-icon">💭</span>
-            <h2 class="card-title">大师名言</h2>
-            <div class="card-content">
-                <div class="quote-text">
-                    "世界上只有一种真正的英雄主义，那就是认清生活的真相后依然热爱生活。"
-                </div>
-                <p class="quote-author">—— 罗曼·罗兰</p>
-
-                <div class="quote-text" style="margin-top: 30px;">
-                    "生活不是等待暴风雨过去，而是学会在雨中跳舞。"
-                </div>
-                <p class="quote-author">—— 维维安·格林</p>
-
-                <div class="quote-text" style="margin-top: 30px;">
-                    "当你穿过暴风雨，你就不再是原来的那个人。这就是暴风雨的意义。"
-                </div>
-                <p class="quote-author">—— 村上春树</p>
-
-                <div class="quote-text" style="margin-top: 30px;">
-                    "不要为打翻的牛奶哭泣，也不要为昨天的烦恼担忧。活在当下，珍惜现在。"
-                </div>
-                <p class="quote-author">—— 戴尔·卡耐基</p>
-            </div>
-        </div>
-
-        <!-- 幽默一刻卡片 -->
-        <div class="card humor-card">
-            <span class="card-icon">😄</span>
-            <h2 class="card-title">幽默一刻</h2>
-            <div class="card-content">
-                <div class="joke-box">
-                    <p class="joke-content">
-                        问：为什么数学书总是很忧郁？<br><br>
-                        答：因为它有太多问题了！😅
-                    </p>
-                </div>
-
-                <div class="joke-box">
-                    <p class="joke-content">
-                        有一天，0遇到了8。<br><br>
-                        0说："胖就胖呗，还扎什么腰带啊！" 😂
-                    </p>
-                </div>
-
-                <div class="joke-box">
-                    <p class="joke-content">
-                        病人："医生，我最近总是觉得自己像只狗。"<br><br>
-                        医生："这种情况多久了？"<br><br>
-                        病人："从我还是小狗的时候开始..." 🐕
-                    </p>
-                </div>
-
-                <p style="text-align: center; color: #f57c00; font-weight: 500; margin-top: 20px; font-size: 1.1em;">
-                    😊 笑一笑，十年少。快乐其实很简单！
-                </p>
-            </div>
-        </div>
-
-        <!-- 联系方式卡片 -->
-        <div class="card contact-card">
-            <span class="card-icon">📞</span>
-            <h2 class="card-title">联系我们</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <p class="email-text">
-                        📧 邮箱：<a href="mailto:1678099587@qq.com" class="email-link">1678099587@qq.com</a>
-                    </p>
-                    <p class="consult-text">
-                        欢迎致电<span class="xiaozhou">小周</span>咨询
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 底部鼓励语 -->
-        <div class="footer-message">
-            <h2>你并不孤单 <span class="heart-beat">❤️</span></h2>
-            <p>
-                如果你正在经历困难时期，请记住：<br>
-                每个人都会遇到低谷，但这不代表你永远会留在那里。<br>
-                寻求专业帮助是勇敢的表现，和朋友聊聊也是很好的选择。<br>
-                相信自己，你有力量度过难关。<br>
-                <strong style="color: #ff6b6b; font-size: 1.2em;">明天会更好，因为你值得拥有美好的人生！</strong>
-            </p>
         </div>
     </div>
 
     <script>
-        // 登录验证功能
-        function checkLogin() {
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const errorMessage = document.getElementById('errorMessage');
-            const loginOverlay = document.getElementById('loginOverlay');
+        let currentSlide = 0;
+        const totalSlides = 3;
+        const carouselInner = document.getElementById('carouselInner');
+        const indicators = document.querySelectorAll('.indicator');
+        let autoPlayTimer;
 
-            if (username === 'ajoker' && password === '54438') {
-                // 登录成功
-                loginOverlay.classList.add('hidden');
-                sessionStorage.setItem('isLoggedIn', 'true');
-                
-                // 清除错误信息
-                errorMessage.classList.remove('show');
-                
-                // 清空输入框
-                document.getElementById('username').value = '';
-                document.getElementById('password').value = '';
-            } else {
-                // 登录失败
-                errorMessage.classList.add('show');
-                
-                // 震动效果后重置
-                setTimeout(() => {
-                    errorMessage.classList.remove('show');
-                }, 2000);
-            }
+        function updateCarousel() {
+            carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
         }
 
-        // 检查是否已登录
-        window.addEventListener('load', function() {
-            if (sessionStorage.getItem('isLoggedIn') === 'true') {
-                document.getElementById('loginOverlay').classList.add('hidden');
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+            resetAutoPlay();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+            resetAutoPlay();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetAutoPlay();
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayTimer);
+            autoPlayTimer = setInterval(nextSlide, 4000);
+        }
+
+        // 自动轮播
+        autoPlayTimer = setInterval(nextSlide, 4000);
+
+        // 键盘控制
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
             }
         });
-
-        // 回车键登录
-        document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && !document.getElementById('loginOverlay').classList.contains('hidden')) {
-                checkLogin();
-            }
-        });
-
-        // 滚动动画效果
-        const cards = document.querySelectorAll('.card');
-        
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        cards.forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.6s ease-out';
-            observer.observe(card);
-        });
-
-        // 添加平滑滚动效果
-        document.documentElement.style.scrollBehavior = 'smooth';
-
-        // 移动端触摸优化
-        let touchStartY = 0;
-        let touchEndY = 0;
-
-        document.addEventListener('touchstart', (e) => {
-            touchStartY = e.touches[0].clientY;
-        }, { passive: true });
-
-        document.addEventListener('touchend', (e) => {
-            touchEndY = e.changedTouches[0].clientY;
-        }, { passive: true });
-
-        // 随机显示鼓励语句（可选功能）
-        const encouragements = [
-            '你今天做得很好！',
-            '继续保持，你很棒的！',
-            '每一个小进步都值得庆祝！',
-            '相信自己，你可以的！',
-            '阳光总在风雨后！'
-        ];
-
-        console.log('💖 ' + encouragements[Math.floor(Math.random() * encouragements.length)]);
     </script>
 </body>
 </html>
